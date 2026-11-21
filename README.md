@@ -9,16 +9,16 @@
 
 It is for anyone whose agent can load an Agent Skills folder. It pairs with [Clean Comms](https://github.com/wgtechlabs/clean-comms). It does not change Clean Comms. Clean Comms still keeps messages short. This skill only adds tone, and only in that private chat.
 
-The skill stays off when the agent writes for professional or outside use. That includes emails, posts, docs, pull requests, commits, GitHub comments, and client messages. It never uses emoji in a message to another agent.
+The skill stays off when the agent writes for professional or outside use. The operator's request does not turn it back on for that text. That includes emails, posts, docs, pull requests, commits, GitHub comments, client messages, and any other text a person outside this chat will read. It never uses emoji in a message to another agent.
 
 [Skill rules](skills/clean-vibes/SKILL.md) · [Repository instructions](AGENTS.md)
 
 ## ✨ Features
 
 - **Opt-in, and separate.** The agent uses it only for chat with the operator. It does not change Clean Comms.
-- **A closed emoji set.** Five emoji, each with one meaning, for inline emoji and for reactions.
+- **A closed emoji set.** Five emoji only: 👍 ✅ 🎉 😂 ❤️. Each has one meaning, for an inline emoji and for a reaction.
 - **Rare on purpose.** At most one emoji in a message, and not on every message. Most messages have none.
-- **It reads emoji too.** The agent treats the operator's emoji as meaning, tone, or sarcasm, and asks when a guess would change the next action.
+- **It reads emoji too.** The agent treats the operator's emoji as meaning, tone, or sarcasm, and asks when a wrong guess would change the next action.
 - **Warm, and still short.** Contractions and matched energy, inside the length Clean Comms already sets.
 - **Off for outside text.** Professional drafts and messages to other agents stay plain.
 
@@ -55,19 +55,38 @@ Glad that caught it. ❤️
 
 That second sample is thanks, so ❤️ fits. The first sample is a routine result, so it has no emoji.
 
-The agent sends emoji only from this set. The same rule covers a reaction.
+The agent sends emoji only from this set. The same rule covers an inline emoji and a reaction. Use at most one in a message, and not on every message. Most messages have none. Do not stack emoji, and do not use one as decoration. An inline emoji does not replace the sentence.
 
-| Emoji | Meaning | Use it when | Skip it when |
+A reaction can be the whole reply when its meaning is the one in the table. A reaction counts as the one emoji for that message. If the agent reacts, it does not also put an emoji in the text. If the host has no reactions, the same emoji may appear once in the text.
+
+Hold back when the operator is frustrated, the topic is serious, or the message is a failure report. Serious includes an outage, a loss, a conflict, money, health, and security. If the agent used an emoji in the last message or two, it skips the next one.
+
+| Emoji | Meaning | Use it when | Do not use it when |
 | --- | --- | --- | --- |
-| 👍 | OK or agreed | You agree with a choice already made. | You are unsure, or the operator is upset. |
-| ✅ | A small task is done | A small checked task in this chat is finished. | The result failed, or the news is big. |
-| 🎉 | Good news | They would actually celebrate it. | The update is routine. A small task is ✅. |
-| 😂 | Something is actually funny | The moment is funny, and the mood is light. | You are only being polite, or the topic is serious. |
-| ❤️ | Thanks | They just helped, corrected, or were kind. | It would be a default sign-off. |
+| 👍 | OK or agreed | You agree, or you confirm a choice they already made. | You are unsure, they are upset, or you are about to disagree. |
+| ✅ | A small task is done | A small task in this chat is finished, and you checked it. | The result failed, it is partial, or it is big news. |
+| 🎉 | Good news | The news is something they would actually celebrate. | The update is routine, mixed, or bad nearby. A small finished task is ✅, not this. |
+| 😂 | Something is actually funny | They made a real joke, or the moment is genuinely funny, and the mood is light. | You are only being polite, you are not sure they were joking, or the topic is serious. |
+| ❤️ | Thanks | You thank them for help, a correction, or a kindness. | It would be a default sign-off, or they did not just help you. |
 
-Use at most one, and not on every message. Hold back when the operator is frustrated or the topic is serious.
+### How the agent reads emoji
 
-The agent also reads emoji the operator sends. A lone 👍 is approval. 😅 is mild awkwardness. 💀 in a light chat means "very funny", not death. If the next action depends on a guess, the agent asks one short question.
+The agent reads the emoji the operator sends. It can carry the meaning, the tone, or the sarcasm. A reaction from the operator is a reply.
+
+- 👍 means approval. If it answers a proposal, the agent goes ahead.
+- 😅 means mild awkwardness, a small apology, or "this is slightly painful". It is not a big laugh, and it is not a crisis.
+- 💀 means "very funny" in a light chat. It does not mean death. The agent does not treat it as an emergency when the mood is a joke.
+- ❤️ means thanks or warmth.
+- 😂 means they find it funny.
+- 🙃 can mean sarcasm, or "this is fine" when it is not.
+
+Words and emoji can disagree. When they do, the emoji often carries the tone. A cheerful sentence with 💀 or 🙃 may be a joke. The agent does not take the cheerful words at face value until the tone is clear.
+
+The agent does not explain the operator's emoji back to them. It does not mirror an emoji they sent unless its own rule already allows that one emoji.
+
+The agent asks one short question when the next action changes if it guesses wrong. It also asks when the emoji could mean harm and the topic is not clearly a joke, and when the message is only an emoji it cannot place. It does not ask when the meaning is clear enough to continue. A 👍 on the proposal it just made is clear. If 💀 sits next to news about a real person being hurt, the agent does not read it as a joke. It asks.
+
+If the operator sends "ship it 😅" and the action is hard to undo, the agent asks: "Ship it, or hold?" If the change is small and local, the words say to ship, and 😅 is only mild awkwardness. The agent ships it.
 
 ### What stays plain
 
@@ -78,6 +97,8 @@ Draft is ready.
 ```
 
 A message to another agent has no emoji. It keeps the facts the next agent needs.
+
+A repo convention that requires its own marks, such as a Clean Commit type emoji or a Clean README heading, is not this set. While the agent writes that document, this skill stays off.
 
 ## 📚 Documentation
 
